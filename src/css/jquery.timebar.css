@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 2015-5-26, 13:59:24
+    Author     : Diluka
+*/
+
+.timebar{
+	height: 3em;
+	position: relative;
+}
+.timebar-pop{
+	border: gray dotted 1px;
+	background-color: lightgray;
+	opacity: 0.5;
+	display: none;
+	position: fixed;
+	height: 1.1em;
+	width: auto;
+}
+.timebar-label{
+	display: inline-block;
+}
+.timebar-label-left{
+	float: left
+}
+.timebar-label-right{
+	float: right
+}
+.timebar-container{
+	height: 1.25em;
+	border: lightgray solid 1px;
+	border-radius:4px;
+	position: relative;
+}
+.timebar-node{
+	text-align: center;
+	height: 100%;
+	position: absolute;
+	background-color: #5bc0de;
+}

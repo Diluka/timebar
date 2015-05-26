@@ -1,2 +1,2 @@
 # timebar
-显示时间段落的js控件
+显示时间段落的jQuery插件
