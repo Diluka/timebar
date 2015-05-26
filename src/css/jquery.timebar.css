@@ -31,7 +31,7 @@ and open the template in the editor.
 	float: right
 }
 .timebar-container{
-	height: 1.25em;
+	height: 40%;
 	border: lightgray solid 1px;
 	border-radius:4px;
 	position: relative;

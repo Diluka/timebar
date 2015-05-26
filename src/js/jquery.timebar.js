@@ -31,8 +31,10 @@
 
 		this.add = function (node) {
 			if (!node || !node.id) {
-				console.error("node格式错误");
+				$.error("node格式错误");
+				return;
 			}
+			this.remove(node.id);
 			this.data.push(node);
 		};
 		this.remove = function (id) {
@@ -57,7 +59,7 @@
 			} else if (time.length === 3) {
 				num = time[0] * 1 + time[1] * 1 / 60 + time[2] * 1 / 60 / 60;
 			} else {
-				console.error("时间格式错误", t);
+				$.error("时间格式错误", t);
 			}
 		}
 
@@ -78,8 +80,8 @@
 					min: 0,
 					max: 24,
 					label: {
-						left: true,
-						right: true
+						left: false,
+						right: false
 					}
 				}, options);
 
@@ -137,7 +139,45 @@
 					if (node.end < data.min) {
 						node.end = data.min;
 					}
+					//$(this).attr("timebar-node-data", JSON.stringify(node));
 					data.add(node);
+					$(this).trigger("render.timebar");
+				}
+			});
+		},
+		addNodes: function (nodes) {
+			return this.each(function () {
+				var data = $(this).data("timebar");
+				if (!data) {
+					return;
+				} else {
+					$(nodes).each(function (i, node) {
+
+
+						node = $.extend({
+							id: "def",
+							start: data.min,
+							end: data.max
+						}, node);
+
+						node.start = timeStrToNum(node.start);
+						node.end = timeStrToNum(node.end);
+
+						if (node.start > data.max) {
+							node.start = data.max;
+						}
+						if (node.start < data.min) {
+							node.start = data.min;
+						}
+						if (node.end > data.max) {
+							node.end = data.max;
+						}
+						if (node.end < data.min) {
+							node.end = data.min;
+						}
+						//$(this).attr("timebar-node-data", JSON.stringify(node));
+						data.add(node);
+					});
 					$(this).trigger("render.timebar");
 				}
 			});
@@ -191,6 +231,12 @@
 								$pop.hide();
 							});
 						}
+
+						var json = eval("(" + $node.attr("timebar-node-data") + ")");
+
+						item = $.extend({}, item, json);
+
+						$node.attr("timebar-node-data", JSON.stringify(item));
 
 						var timeStr = numToTimeStr(item.start) + " - " + numToTimeStr(item.end);
 
