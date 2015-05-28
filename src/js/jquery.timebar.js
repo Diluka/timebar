@@ -213,6 +213,7 @@
 				if (!data) {
 					return;
 				} else {
+					$(this).find("[timebar-node-id='" + id + "']").remove();
 					data.remove(id);
 					//$(this).trigger("render.timebar");
 				}
