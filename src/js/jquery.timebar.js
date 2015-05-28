@@ -274,8 +274,8 @@
 
 						$node.css({
 							"left": max * ((item.start - _data.min) / (_data.max - _data.min)) + "px",
-							"background-color": item.color || $node.css("background-color"),
-							"color": item.displayColor || $node.css("color")
+//							"background-color": item.color || $node.css("background-color"),
+//							"color": item.displayColor || $node.css("color")
 						});
 						$node.width(max * ((item.end - item.start) / (_data.max - _data.min)));
 
