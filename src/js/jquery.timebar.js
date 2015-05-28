@@ -36,6 +36,9 @@
 			}
 			this.remove(node.id);
 			this.data.push(node);
+			this.data.sort(function (a, b) {
+				return a.start - b.start;
+			});
 		};
 		this.remove = function (id) {
 			var _data = this.data;
@@ -45,6 +48,9 @@
 					return false;
 				}
 			});
+		};
+		this.getAllNodesCopy = function () {
+			return this.data.slice(0);
 		};
 	}
 
@@ -141,7 +147,7 @@
 					}
 					//$(this).attr("timebar-node-data", JSON.stringify(node));
 					data.add(node);
-					$(this).trigger("render.timebar");
+					//$(this).trigger("render.timebar");
 				}
 			});
 		},
@@ -178,6 +184,25 @@
 						//$(this).attr("timebar-node-data", JSON.stringify(node));
 						data.add(node);
 					});
+					//$(this).trigger("render.timebar");
+				}
+			});
+		},
+		getAllNodes: function () {
+			var data = this.data("timebar");
+			if (!data) {
+				return;
+			} else {
+				return data.getAllNodesCopy();
+			}
+		},
+		clearNodes: function () {
+			return this.each(function () {
+				var data = $(this).data("timebar");
+				if (!data) {
+					return;
+				} else {
+					data.data = [];
 					$(this).trigger("render.timebar");
 				}
 			});
@@ -189,7 +214,7 @@
 					return;
 				} else {
 					data.remove(id);
-					$(this).trigger("render.timebar");
+					//$(this).trigger("render.timebar");
 				}
 			});
 		},
@@ -221,6 +246,9 @@
 
 						if ($node.length === 0) {
 							$node = $("<span class='timebar-node'>");
+							if (item.elCls) {
+								$node.addClass(item.elCls);
+							}
 							$node.attr("timebar-node-id", item.id);
 							$node.mouseenter(function () {
 								if (item.hover) {
