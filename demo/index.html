@@ -89,13 +89,13 @@ and open the template in the editor.
 				color: "#5cb85c",
 				displayColor: "yellow"
 			});
-			$("#btn").click(function () {
-				$("#tb").timebar("removeNode", "n1");
-				var data = eval("(" + $("#tb .timebar-node:last").attr("timebar-node-data") + ")");
-				data.display = "显示文本";
-				$("#tb .timebar-node:last").attr("timebar-node-data", JSON.stringify(data));
-				$("#tb").timebar("render");
-			});
+//			$("#btn").click(function () {
+//				$("#tb").timebar("removeNode", "n1");
+//				var data = eval("(" + $("#tb .timebar-node:last").attr("timebar-node-data") + ")");
+//				data.display = "显示文本";
+//				$("#tb .timebar-node:last").attr("timebar-node-data", JSON.stringify(data));
+//				$("#tb").timebar("render");
+//			});
 			$("#tb").timebar("bind", {
 				id: "n2",
 				trigger: "click",

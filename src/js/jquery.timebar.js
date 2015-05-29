@@ -261,11 +261,14 @@
 							});
 						}
 
-						var json = eval("(" + $node.attr("timebar-node-data") + ")");
+//						var json = eval("(" + $node.attr("timebar-node-data") + ")");
+//
+//						item = $.extend({}, item, json);
+//
+//						$node.attr("timebar-node-data", JSON.stringify(item));
 
-						item = $.extend({}, item, json);
-
-						$node.attr("timebar-node-data", JSON.stringify(item));
+						$node.attr("timebar-node-start", item.start);
+						$node.attr("timebar-node-end", item.end);
 
 						var timeStr = numToTimeStr(item.start) + " - " + numToTimeStr(item.end);
 
